@@ -2,8 +2,8 @@
 :root {
     --bg: #000000;
     --surface: #0d0d0d;
-    --primary: #00eaff;            /* electric blue */
-    --primary-light: #33ffff;      /* lighter cyan */
+    --primary: #ff0000;            /* primary red */
+    --primary-light: #ff3333;      /* lighter red */
     --accent: #ffffff;
     --muted: #666666;
     --transition: 0.3s ease;
