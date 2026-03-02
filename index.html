@@ -197,6 +197,14 @@
             </div>
         </div>
     </footer>
+    <script>
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.debug_greeting !== undefined) {
+      console.log('Comm100 event fired:', e.data.fired);
+      console.log('Field value:', e.data.debug_greeting);
+    }
+  });
+</script>
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-dynamic"></div>
 <script type="text/javascript" >
