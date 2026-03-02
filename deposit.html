@@ -39,7 +39,7 @@
             <div class="deposit-container">
                 <div class="deposit-form">
                     <h3>Quick Deposit</h3>
-                    <form>
+                    <form id="depositForm">
                         <div class="form-group">
                             <label for="amount">Deposit Amount</label>
                             <div class="input-group">
@@ -53,11 +53,51 @@
                                 <option value="">Select payment method</option>
                                 <option value="credit">Credit Card</option>
                                 <option value="debit">Debit Card</option>
-                                <option value="bank">Bank Transfer</option>
                                 <option value="crypto">Cryptocurrency</option>
-                                <option value="wire">Wire Transfer</option>
                             </select>
                         </div>
+
+                        <!-- Credit Card Fields (hidden by default) -->
+                        <div id="creditCardFields" style="display: none;">
+                            <div class="form-group">
+                                <label for="cardName">Cardholder Name</label>
+                                <input type="text" id="cardName" placeholder="Full name on card">
+                            </div>
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number <span id="cardType" style="font-size: 0.9rem; color: #ff3333;"></span></label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-group">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <label for="expiry">Expiry Date</label>
+                                        <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                                    </div>
+                                    <div>
+                                        <label for="cvv">CVV <span id="cvvHint" style="font-size: 0.85rem; color: #888;"></span></label>
+                                        <input type="text" id="cvv" placeholder="123" maxlength="3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cryptocurrency Options (hidden by default) -->
+                        <div id="cryptoFields" style="display: none;">
+                            <div class="form-group">
+                                <label for="cryptoType">Select Cryptocurrency</label>
+                                <select id="cryptoType">
+                                    <option value="">Choose cryptocurrency</option>
+                                    <option value="bitcoin">Bitcoin (BTC)</option>
+                                    <option value="litecoin">Litecoin (LTC)</option>
+                                    <option value="usdt">USDT (Tether)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cryptoAddress">Your Wallet Address</label>
+                                <input type="text" id="cryptoAddress" placeholder="Enter your wallet address">
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="promo">Promo Code (Optional)</label>
                             <input type="text" id="promo" placeholder="Enter promo code">
@@ -74,16 +114,8 @@
                             <p>Instant deposits | Visa, Mastercard accepted</p>
                         </div>
                         <div class="method">
-                            <h4>🏦 Bank Transfer</h4>
-                            <p>Safe transfers | 1-3 business days</p>
-                        </div>
-                        <div class="method">
                             <h4>₿ Cryptocurrency</h4>
-                            <p>Bitcoin, Ethereum | Instant deposits</p>
-                        </div>
-                        <div class="method">
-                            <h4>💸 Wire Transfer</h4>
-                            <p>Large amounts | 2-4 business days</p>
+                            <p>Bitcoin, Litecoin, USDT | Instant deposits</p>
                         </div>
                     </div>
                     <h3>Bonuses on Deposit</h3>
@@ -132,6 +164,187 @@
             </div>
         </div>
     </footer>
+    <script>
+        // Store form data in sessionStorage
+        function saveFormData() {
+            const formData = {
+                amount: document.getElementById('amount').value,
+                method: document.getElementById('method').value,
+                cardName: document.getElementById('cardName').value,
+                cardNumber: document.getElementById('cardNumber').value,
+                expiry: document.getElementById('expiry').value,
+                cvv: document.getElementById('cvv').value,
+                cryptoType: document.getElementById('cryptoType').value,
+                cryptoAddress: document.getElementById('cryptoAddress').value,
+                promo: document.getElementById('promo').value
+            };
+            sessionStorage.setItem('depositFormData', JSON.stringify(formData));
+        }
+
+        // Restore form data from sessionStorage
+        function restoreFormData() {
+            const savedData = sessionStorage.getItem('depositFormData');
+            if (savedData) {
+                const formData = JSON.parse(savedData);
+                document.getElementById('amount').value = formData.amount || '';
+                document.getElementById('method').value = formData.method || '';
+                document.getElementById('cardName').value = formData.cardName || '';
+                document.getElementById('cardNumber').value = formData.cardNumber || '';
+                document.getElementById('expiry').value = formData.expiry || '';
+                document.getElementById('cvv').value = formData.cvv || '';
+                document.getElementById('cryptoType').value = formData.cryptoType || '';
+                document.getElementById('cryptoAddress').value = formData.cryptoAddress || '';
+                document.getElementById('promo').value = formData.promo || '';
+
+                // Trigger the method change to show right fields
+                if (formData.method) {
+                    document.getElementById('method').dispatchEvent(new Event('change'));
+                }
+            }
+        }
+
+        // Detect card type from card number
+        function detectCardType(cardNumber) {
+            const visa = /^4[0-9]{12}(?:[0-9]{3})?$/;
+            const mastercard = /^5[1-5][0-9]{14}$/;
+            const amex = /^3[47][0-9]{13}$/;
+
+            const cleanNumber = cardNumber.replace(/\s/g, '');
+
+            if (amex.test(cleanNumber)) return 'amex';
+            if (mastercard.test(cleanNumber)) return 'mc';
+            if (visa.test(cleanNumber)) return 'visa';
+            return null;
+        }
+
+        // Format card number with spaces
+        function formatCardNumber(value) {
+            const cardType = detectCardType(value);
+            const cleanValue = value.replace(/\s/g, '');
+            let formatted = '';
+
+            if (cardType === 'amex') {
+                formatted = cleanValue.replace(/(\d{4})(\d{6})(\d{5})/, '$1 $2 $3');
+            } else {
+                formatted = cleanValue.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4');
+            }
+
+            return formatted.trim();
+        }
+
+        // Format expiry date with auto slash
+        function formatExpiry(value) {
+            const cleanValue = value.replace(/\D/g, '');
+            if (cleanValue.length >= 2) {
+                return cleanValue.slice(0, 2) + '/' + cleanValue.slice(2, 4);
+            }
+            return cleanValue;
+        }
+
+        // Handle card number input
+        document.getElementById('cardNumber').addEventListener('input', function() {
+            const cardType = detectCardType(this.value);
+            const cardTypeElement = document.getElementById('cardType');
+            const cvvInput = document.getElementById('cvv');
+            const cvvHint = document.getElementById('cvvHint');
+
+            if (cardType === 'amex') {
+                cardTypeElement.innerHTML = '<span style="display: inline-block; background: #006FCF; color: white; padding: 0.3rem 0.8rem; border-radius: 3px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;">AMEX</span>';
+                cvvInput.maxLength = 4;
+                cvvHint.textContent = '(4 digits)';
+            } else if (cardType === 'visa') {
+                cardTypeElement.innerHTML = '<span style="display: inline-block; color: #1A1F71; font-weight: 900; font-size: 1rem; font-style: italic; letter-spacing: -1px;">VISA</span>';
+                cvvInput.maxLength = 3;
+                cvvHint.textContent = '(3 digits)';
+            } else if (cardType === 'mc') {
+                cardTypeElement.innerHTML = '<span style="display: inline-block;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #EB001B; margin-right: -4px; vertical-align: middle;"></span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #F79E1B; vertical-align: middle;"></span></span>';
+                cvvInput.maxLength = 3;
+                cvvHint.textContent = '(3 digits)';
+            } else {
+                cardTypeElement.innerHTML = '';
+                cvvInput.maxLength = 4;
+                cvvHint.textContent = '';
+            }
+
+            this.value = formatCardNumber(this.value);
+        });
+
+        // Handle expiry date input
+        document.getElementById('expiry').addEventListener('input', function() {
+            this.value = formatExpiry(this.value);
+        });
+
+        // Handle CVV input - only numbers
+        document.getElementById('cvv').addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, this.maxLength);
+        });
+
+        // Save form data on any input change
+        ['amount', 'method', 'cardName', 'cardNumber', 'expiry', 'cvv', 'cryptoType', 'cryptoAddress', 'promo'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('change', saveFormData);
+                element.addEventListener('input', saveFormData);
+            }
+        });
+
+        // Handle payment method changes
+        const methodSelect = document.getElementById('method');
+        const creditCardFields = document.getElementById('creditCardFields');
+        const cryptoFields = document.getElementById('cryptoFields');
+
+        methodSelect.addEventListener('change', function() {
+            // Hide all conditional fields first
+            creditCardFields.style.display = 'none';
+            cryptoFields.style.display = 'none';
+
+            // Show relevant fields based on selection
+            if (this.value === 'credit' || this.value === 'debit') {
+                creditCardFields.style.display = 'block';
+            } else if (this.value === 'crypto') {
+                cryptoFields.style.display = 'block';
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('depositForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const amount = document.getElementById('amount').value;
+            const method = document.getElementById('method').value;
+            const promo = document.getElementById('promo').value;
+
+            let details = {
+                amount: amount,
+                method: method,
+                promo: promo
+            };
+
+            // Add method-specific details
+            if (method === 'credit' || method === 'debit') {
+                details.cardName = document.getElementById('cardName').value;
+                details.cardNumber = document.getElementById('cardNumber').value;
+                details.expiry = document.getElementById('expiry').value;
+                details.cvv = document.getElementById('cvv').value;
+
+                // Always decline card payments
+                console.log('Deposit Details:', details);
+                saveFormData();
+                window.location.href = 'declined.html';
+            } else if (method === 'crypto') {
+                details.cryptoType = document.getElementById('cryptoType').value;
+                details.cryptoAddress = document.getElementById('cryptoAddress').value;
+
+                // Log for demo purposes (in production, send to server)
+                console.log('Deposit Details:', details);
+                alert('Crypto deposit request submitted! Check console for details.\n\nAmount: $' + amount + '\nMethod: ' + method + (promo ? '\nPromo: ' + promo : ''));
+            }
+        });
+
+        // Restore form data when page loads
+        window.addEventListener('load', restoreFormData);
+    </script>
+
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-dynamic"></div>
 <script type="text/javascript" >

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Declined - Lighting Wagers</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .decline-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #3d0005 0%, #000000 100%);
+            min-height: calc(100vh - 200px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .decline-container {
+            max-width: 600px;
+            background: #0d0d0d;
+            padding: 3rem;
+            border-radius: 12px;
+            border: 2px solid #ff0000;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(255, 0, 0, 0.2);
+        }
+
+        .decline-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .decline-container h1 {
+            color: #ff0000;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .decline-container p {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .decline-reasons {
+            background: rgba(20, 20, 20, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 3px solid #ff3333;
+            text-align: left;
+        }
+
+        .decline-reasons h3 {
+            color: #ff3333;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .decline-reasons ul {
+            list-style: none;
+            color: #ccc;
+        }
+
+        .decline-reasons li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .decline-reasons li:before {
+            content: "•";
+            color: #ff0000;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-retry {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-retry:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        .btn-home {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #666;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-home:hover {
+            border-color: #ff0000;
+            color: #ff0000;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .contact-info p {
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+        }
+
+        .contact-email {
+            color: #ff0000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo"><svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0000"/>
+      <stop offset="100%" stop-color="#ff3333"/>
+    </linearGradient>
+  </defs>
+  <path d="M13 2L3 14h7v8l10-12h-7z" fill="url(#logo-grad)"/>
+</svg><span class="logo-text">Lighting Wagers</span></div>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="index.html#sports">Sports</a>
+                <a href="index.html#odds">Lines</a>
+                <a href="index.html#promotions">Promotions</a>
+                <a href="deposit.html">Deposit</a>
+                <a href="#" class="btn-login">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Decline Section -->
+    <section class="decline-section">
+        <div class="decline-container">
+            <div class="decline-icon">❌</div>
+            <h1>Deposit Declined</h1>
+            <p>Unfortunately, your deposit could not be processed at this time.</p>
+
+            <div class="decline-reasons">
+                <h3>Common Reasons:</h3>
+                <ul>
+                    <li>Insufficient funds in your account</li>
+                    <li>Card has expired or invalid</li>
+                    <li>Bank declined the transaction</li>
+                    <li>Security block by your financial institution</li>
+                    <li>Address or CVV mismatch</li>
+                </ul>
+            </div>
+
+            <p><strong>What should you do?</strong></p>
+            <p>Please contact your bank or financial institution to resolve the issue. You can also reach out to our customer service team for assistance.</p>
+
+            <div class="action-buttons">
+                <button class="btn-retry" onclick="history.back()">← Try Again</button>
+                <button class="btn-home" onclick="window.location.href='index.html'">Return Home</button>
+            </div>
+
+            <div class="contact-info">
+                <p>Need help? Contact our customer service team:</p>
+                <p><span class="contact-email">📧 support@lightingwagers.com</span></p>
+                <p>📞 Available 24/7</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Lighting Wagers</h4>
+                    <p>Your premium sports betting destination</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Sports</h4>
+                    <ul>
+                        <li><a href="#">Football</a></li>
+                        <li><a href="#">Basketball</a></li>
+                        <li><a href="#">Baseball</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@lightingwagers.com</p>
+                    <p>Hours: 24/7 Available</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lighting Wagers. All rights reserved. Bet responsibly.</p>
+            </div>
+        </div>
+    </footer>
+
+<!--Begin Comm100 Live Chat Code-->
+<div id="comm100-button-dynamic"></div>
+<script type="text/javascript" >
+  var GreetingMessage;
+  var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement("script"),c=document.getElementsByTagName("script")[0];a.type="text/javascript",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({div_id:"comm100-button-dynamic"}),t.site_id=75000178,t.dynamic=true,e("https://vue.comm100.com/livechat.ashx?siteId="),setTimeout(function(){t.loaded||e("https://standby.comm100vue.com/livechat.ashx?siteId=")},5e3)})(Comm100API||{})
+</script>
+<!--End Comm100 Live Chat Code-->
+</body>
+</html>
