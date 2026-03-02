@@ -1,4 +1,4 @@
-/* Basic reset */
+/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,81 +6,555 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    color: #fff;
     line-height: 1.6;
 }
 
-header {
-    background-color: #004080;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header */
+.header {
+    background: #000;
     color: #fff;
-    padding: 1rem 2rem;
+    padding: 1rem 0;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+    border-bottom: 2px solid #ff0000;
+}
+
+.header .container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
-header h1 {
-    font-size: 1.5rem;
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff0000;
 }
 
-header nav a {
+.nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav a {
     color: #fff;
     text-decoration: none;
-    margin-left: 1rem;
-    font-weight: bold;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
-main {
+.nav a:hover {
+    color: #ff0000;
+}
+
+.btn-login {
+    background-color: #ff0000;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: #fff !important;
+}
+
+.btn-login:hover {
+    background-color: #cc0000;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #1a0000 0%, #000 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 2px solid #ff0000;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ff0000;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #cc0000;
+}
+
+/* Sports Grid */
+.sports-grid {
+    padding: 3rem 0;
+    background-color: #050505;
+    border-bottom: 1px solid #ff0000;
+}
+
+.sports-grid h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #ff0000;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.sport-card {
+    background: linear-gradient(135deg, #330000 0%, #1a0000 100%);
+    color: #fff;
     padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s;
+    border: 2px solid #ff0000;
 }
 
-.odds-table table {
+.sport-card:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(135deg, #550000 0%, #330000 100%);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.sport-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Live Odds Section */
+.live-odds {
+    padding: 3rem 0;
+    background-color: #000;
+    border-bottom: 1px solid #ff0000;
+}
+
+.live-odds h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #ff0000;
+}
+
+.odds-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1.5rem;
+    background: #050505;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+    border: 2px solid #ff0000;
 }
 
-.odds-table th,
-.odds-table td {
-    border: 1px solid #ddd;
-    padding: 0.75rem;
-    text-align: center;
+.odds-table thead {
+    background-color: #1a0000;
+    color: #ff0000;
+    border-bottom: 2px solid #ff0000;
 }
 
 .odds-table th {
-    background-color: #e2e2e2;
-}
-
-.promo {
-    background-color: #fff3cd;
     padding: 1rem;
-    border: 1px solid #ffeeba;
-    border-radius: 4px;
-}
-
-footer {
-    background-color: #222;
-    color: #ccc;
     text-align: center;
-    padding: 1rem 0;
-    margin-top: 2rem;
+    font-weight: 600;
 }
 
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
+.odds-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    color: #fff;
+}
+
+.odds-table tbody tr:hover {
+    background-color: #1a1a1a;
+}
+
+.spread, .ml, .ou {
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+.spread {
+    background-color: #330000;
+    color: #ff6666;
+}
+
+.ml {
+    background-color: #330000;
+    color: #ff6666;
+}
+
+.ou {
+    background-color: #330000;
+    color: #ff6666;
+}
+
+.btn-bet {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-bet:hover {
+    background-color: #cc0000;
+}
+
+/* Promotions Section */
+.promotions {
+    padding: 3rem 0;
+    background-color: #050505;
+    border-bottom: 1px solid #ff0000;
+}
+
+.promotions h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #ff0000;
+}
+
+.promo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.promo-card {
+    background: linear-gradient(135deg, #330000 0%, #1a0000 100%);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+    border: 2px solid #ff0000;
+}
+
+.promo-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.promo-amount {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #ff0000;
+}
+
+.promo-desc {
+    font-size: 0.95rem;
+    opacity: 0.95;
+}
+
+/* Features Section */
+.features {
+    padding: 3rem 0;
+    background-color: #000;
+    border-bottom: 1px solid #ff0000;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #ff0000;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature {
+    background: #050505;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+    border: 2px solid #ff0000;
+}
+
+.feature h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #ff0000;
+}
+
+/* Deposit Section */
+.deposit {
+    padding: 3rem 0;
+    background-color: #050505;
+    border-top: 2px solid #ff0000;
+    border-bottom: 2px solid #ff0000;
+}
+
+.deposit h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #ff0000;
+}
+
+.deposit-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.deposit-form {
+    background: #000;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid #ff0000;
+}
+
+.deposit-form h3 {
+    color: #ff0000;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #ff0000;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input::placeholder {
+    color: #666;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #ff3333;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group span {
+    color: #ff0000;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.input-group input {
+    flex: 1;
+}
+
+.btn-deposit {
+    width: 100%;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-deposit:hover {
+    background-color: #cc0000;
+}
+
+.security-note {
+    text-align: center;
+    margin-top: 1rem;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.deposit-info {
+    background: #000;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid #ff0000;
+}
+
+.deposit-info h3 {
+    color: #ff0000;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.method-list {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.method {
+    background: #1a1a1a;
+    padding: 1rem;
+    border-radius: 4px;
+    border-left: 3px solid #ff0000;
+}
+
+.method h4 {
+    color: #ff0000;
+    margin-bottom: 0.5rem;
+}
+
+.method p {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.bonus-list {
+    list-style: none;
+}
+
+.bonus-list li {
+    color: #fff;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.bonus-list li:last-child {
+    border-bottom: none;
+}
+
+/* Footer */
+.footer {
+    background-color: #000;
+    color: #ccc;
+    padding: 3rem 0 1rem;
+    margin-top: 3rem;
+    border-top: 2px solid #ff0000;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    color: #ff0000;
+    margin-bottom: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #ff0000;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav {
+        gap: 1rem;
+        font-size: 0.9rem;
     }
 
-    header nav {
-        margin-top: 0.5rem;
+    .hero h1 {
+        font-size: 1.8rem;
     }
 
-    .odds-table table,
+    .hero p {
+        font-size: 1rem;
+    }
+
     .odds-table th,
     .odds-table td {
-        font-size: 0.9rem;
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .deposit-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .grid, .promo-grid, .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
     }
 }

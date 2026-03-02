@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit - Lighting Wagers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">⚡ Lighting Wagers</div>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="index.html#sports">Sports</a>
+                <a href="index.html#odds">Lines</a>
+                <a href="index.html#promotions">Promotions</a>
+                <a href="deposit.html">Deposit</a>
+                <a href="#" class="btn-login">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Deposit Section -->
+    <section class="deposit" id="deposit">
+        <div class="container">
+            <h2>Fund Your Account</h2>
+            <div class="deposit-container">
+                <div class="deposit-form">
+                    <h3>Quick Deposit</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="amount">Deposit Amount</label>
+                            <div class="input-group">
+                                <span>$</span>
+                                <input type="number" id="amount" placeholder="Enter amount" min="10" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="method">Payment Method</label>
+                            <select id="method" required>
+                                <option value="">Select payment method</option>
+                                <option value="credit">Credit Card</option>
+                                <option value="debit">Debit Card</option>
+                                <option value="bank">Bank Transfer</option>
+                                <option value="crypto">Cryptocurrency</option>
+                                <option value="wire">Wire Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="promo">Promo Code (Optional)</label>
+                            <input type="text" id="promo" placeholder="Enter promo code">
+                        </div>
+                        <button type="submit" class="btn-deposit">Deposit Now</button>
+                    </form>
+                    <p class="security-note">✓ Secure and encrypted transactions</p>
+                </div>
+                <div class="deposit-info">
+                    <h3>Deposit Methods</h3>
+                    <div class="method-list">
+                        <div class="method">
+                            <h4>💳 Credit/Debit Card</h4>
+                            <p>Instant deposits | Visa, Mastercard accepted</p>
+                        </div>
+                        <div class="method">
+                            <h4>🏦 Bank Transfer</h4>
+                            <p>Safe transfers | 1-3 business days</p>
+                        </div>
+                        <div class="method">
+                            <h4>₿ Cryptocurrency</h4>
+                            <p>Bitcoin, Ethereum | Instant deposits</p>
+                        </div>
+                        <div class="method">
+                            <h4>💸 Wire Transfer</h4>
+                            <p>Large amounts | 2-4 business days</p>
+                        </div>
+                    </div>
+                    <h3>Bonuses on Deposit</h3>
+                    <ul class="bonus-list">
+                        <li>✓ 100% Match up to $1,000 - First deposit</li>
+                        <li>✓ 50% Reload Bonus - Weekdays</li>
+                        <li>✓ Free play on deposits over $500</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Lighting Wagers</h4>
+                    <p>Your premium sports betting destination</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Sports</h4>
+                    <ul>
+                        <li><a href="#">Football</a></li>
+                        <li><a href="#">Basketball</a></li>
+                        <li><a href="#">Baseball</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@lightingwagers.com</p>
+                    <p>Hours: 24/7 Available</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lighting Wagers. All rights reserved. Bet responsibly.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

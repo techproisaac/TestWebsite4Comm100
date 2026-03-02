@@ -3,63 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sportsbook</title>
+    <title>Lighting Wagers - Premium Sports Betting Platform</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>🏈 Sportsbook Central</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Lines</a>
-            <a href="#">Promotions</a>
-            <a href="#">Help</a>
-        </nav>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">⚡ Lighting Wagers</div>
+            <nav class="nav">
+                <a href="#sports">Sports</a>
+                <a href="#odds">Lines</a>
+                <a href="#promotions">Promotions</a>
+                <a href="deposit.html">Deposit</a>
+                <a href="#" class="btn-login">Login</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="odds-table">
-            <h2>Today's Games</h2>
-            <table>
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <h1>Expert Sports Betting Made Simple</h1>
+            <p>Real-time odds, live betting, and exclusive bonuses</p>
+            <button class="btn-primary">Join Now</button>
+        </div>
+    </section>
+
+    <!-- Sports Categories -->
+    <section class="sports-grid" id="sports">
+        <div class="container">
+            <h2>Popular Sports</h2>
+            <div class="grid">
+                <div class="sport-card">
+                    <h3>🏈 NFL</h3>
+                    <p>1,240+ matchups available</p>
+                </div>
+                <div class="sport-card">
+                    <h3>🏀 NBA</h3>
+                    <p>980+ games this season</p>
+                </div>
+                <div class="sport-card">
+                    <h3>⚾ MLB</h3>
+                    <p>2,430+ games in season</p>
+                </div>
+                <div class="sport-card">
+                    <h3>⚽ Soccer</h3>
+                    <p>500+ international leagues</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Odds Table -->
+    <section class="live-odds" id="odds">
+        <div class="container">
+            <h2>Today's Featured Lines</h2>
+            <table class="odds-table">
                 <thead>
                     <tr>
-                        <th>Matchup</th>
+                        <th>Game</th>
                         <th>Spread</th>
                         <th>Moneyline</th>
                         <th>Over/Under</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Team A vs Team B</td>
-                        <td>Team A -3.5</td>
-                        <td>Team A -150</td>
-                        <td>47.5</td>
+                        <td>Patriots vs Dolphins</td>
+                        <td><span class="spread">-4.5</span> / <span class="spread">+4.5</span></td>
+                        <td><span class="ml">-180</span> / <span class="ml">+155</span></td>
+                        <td><span class="ou">O 43.5</span> / <span class="ou">U 43.5</span></td>
+                        <td><button class="btn-bet">Bet</button></td>
                     </tr>
                     <tr>
-                        <td>Team C vs Team D</td>
-                        <td>Team D +1.0</td>
-                        <td>Team C +120</td>
-                        <td>52.0</td>
+                        <td>Lakers vs Celtics</td>
+                        <td><span class="spread">-3.0</span> / <span class="spread">+3.0</span></td>
+                        <td><span class="ml">-140</span> / <span class="ml">+120</span></td>
+                        <td><span class="ou">O 215</span> / <span class="ou">U 215</span></td>
+                        <td><button class="btn-bet">Bet</button></td>
                     </tr>
                     <tr>
-                        <td>Team E vs Team F</td>
-                        <td>Team F -2.5</td>
-                        <td>Team F -130</td>
-                        <td>49.0</td>
+                        <td>Yankees vs Red Sox</td>
+                        <td><span class="spread">-1.5</span> / <span class="spread">+1.5</span></td>
+                        <td><span class="ml">-110</span> / <span class="ml">-110</span></td>
+                        <td><span class="ou">O 8.5</span> / <span class="ou">U 8.5</span></td>
+                        <td><button class="btn-bet">Bet</button></td>
+                    </tr>
+                    <tr>
+                        <td>Real Madrid vs Barcelona</td>
+                        <td><span class="spread">-1.0</span> / <span class="spread">+1.0</span></td>
+                        <td><span class="ml">-120</span> / <span class="ml">+100</span></td>
+                        <td><span class="ou">O 2.5</span> / <span class="ou">U 2.5</span></td>
+                        <td><button class="btn-bet">Bet</button></td>
                     </tr>
                 </tbody>
             </table>
-        </section>
+        </div>
+    </section>
 
-        <section class="promo">
-            <h2>Hot Promotions</h2>
-            <p>🎉 New users get a 100% deposit bonus up to $500.</p>
-        </section>
-    </main>
+    <!-- Promotions -->
+    <section class="promotions" id="promotions">
+        <div class="container">
+            <h2>Exclusive Offers</h2>
+            <div class="promo-grid">
+                <div class="promo-card">
+                    <h3>Welcome Bonus</h3>
+                    <p class="promo-amount">100% Match</p>
+                    <p class="promo-desc">Up to $1,000 on your first deposit</p>
+                </div>
+                <div class="promo-card">
+                    <h3>Free Play</h3>
+                    <p class="promo-amount">$50</p>
+                    <p class="promo-desc">No deposit required for new users</p>
+                </div>
+                <div class="promo-card">
+                    <h3>Parlay Boost</h3>
+                    <p class="promo-amount">+20%</p>
+                    <p class="promo-desc">Extra returns on multi-leg parlays</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 Sportsbook Inc. All rights reserved.</p>
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose ProBet</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>✅ Live Betting</h3>
+                    <p>Bet during the action with real-time odds updates</p>
+                </div>
+                <div class="feature">
+                    <h3>📱 Mobile App</h3>
+                    <p>Seamless betting experience on iOS and Android</p>
+                </div>
+                <div class="feature">
+                    <h3>🔒 Secure</h3>
+                    <p>Bank-level encryption and responsible gambling tools</p>
+                </div>
+                <div class="feature">
+                    <h3>💬 Support</h3>
+                    <p>24/7 customer service available for assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Lighting Wagers</h4>
+                    <p>Your premium sports betting destination</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Sports</h4>
+                    <ul>
+                        <li><a href="#">Football</a></li>
+                        <li><a href="#">Basketball</a></li>
+                        <li><a href="#">Baseball</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@probet.com</p>
+                    <p>Hours: 24/7 Available</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lighting Wagers. All rights reserved. Bet responsibly.</p>
+            </div>
+        </div>
     </footer>
     <!--Begin Comm100 Live Chat Code-->
     <div id="comm100-button-34b54267-5f99-4e8d-9914-66febb88e571"></div>
