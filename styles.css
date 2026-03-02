@@ -1,0 +1,86 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #004080;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+main {
+    padding: 2rem;
+}
+
+.odds-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+.odds-table th,
+.odds-table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.odds-table th {
+    background-color: #e2e2e2;
+}
+
+.promo {
+    background-color: #fff3cd;
+    padding: 1rem;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
+}
+
+footer {
+    background-color: #222;
+    color: #ccc;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav {
+        margin-top: 0.5rem;
+    }
+
+    .odds-table table,
+    .odds-table th,
+    .odds-table td {
+        font-size: 0.9rem;
+    }
+}
