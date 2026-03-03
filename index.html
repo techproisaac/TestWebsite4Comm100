@@ -199,10 +199,9 @@
     </footer>
     <script>
   window.addEventListener('message', function(e) {
-    if (e.data && e.data.debug_greeting !== undefined) {
-      console.log('Comm100 event fired:', e.data.fired);
-      console.log('Field value:', e.data.debug_greeting);
-    }
+    // Log ALL messages to find what Comm100 sends
+    console.log('Message origin:', e.origin);
+    console.log('Message data:', JSON.stringify(e.data));
   });
 </script>
 <!--Begin Comm100 Live Chat Code-->
