@@ -1,9 +1,11 @@
-/* Variables and Reset */
+/* ===============================
+   VARIABLES & RESET
+================================= */
 :root {
     --bg: #000000;
     --surface: #0d0d0d;
-    --primary: #ff0000;            /* primary red */
-    --primary-light: #ff3333;      /* lighter red */
+    --primary: #ff0000;
+    --primary-light: #ff3333;
     --accent: #ffffff;
     --muted: #666666;
     --transition: 0.3s ease;
@@ -22,7 +24,6 @@ body {
     background-color: var(--bg);
     color: var(--accent);
     line-height: 1.6;
-    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -32,20 +33,23 @@ body {
     padding: 0 1rem;
 }
 
-/* Header */
+/* ===============================
+   HEADER
+================================= */
+
 .header {
     background: var(--surface);
     padding: 1rem 0;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.75);
     border-bottom: 2px solid var(--primary);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.75);
 }
 
 .header .container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    text-align: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -67,949 +71,270 @@ body {
 .logo-icon {
     width: 36px;
     height: 36px;
-    animation: pulse 2s infinite, rotate 8s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
 }
+
+/* NAV */
 
 .nav {
     display: flex;
-    gap: 1.5rem;
     align-items: center;
-    font-weight: 600;
-    font-size: 0.95rem;
+    gap: 2rem;
 }
 
-
-/* container for nav links (desktop fallback) */
 .nav-links {
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
 .nav a {
     color: var(--accent);
     text-decoration: none;
     position: relative;
+    font-weight: 600;
     transition: color var(--transition);
 }
 
 .nav a::after {
     content: '';
     position: absolute;
-    width: 0;
     height: 2px;
+    width: 0;
     bottom: -3px;
     left: 0;
-    background-color: var(--primary);
+    background: var(--primary);
     transition: width var(--transition);
 }
 
-.nav a:hover,
-.nav a:focus {
+.nav a:hover {
     color: var(--primary-light);
 }
 
-.nav a:hover::after,
-.nav a:focus::after {
+.nav a:hover::after {
     width: 100%;
 }
 
-/* Deposit link - make it stand out as a CTA */
+/* ===============================
+   CONNECTED CTA (FIXED CLEAN)
+================================= */
+
 .cta-group {
     display: flex;
-    align-items: center;
-    gap: 0; /* remove gap so elements touch and appear joined */
+    align-items: stretch;
 }
 
 .deposit-cta {
-    background-color: var(--primary);
+    background: var(--primary);
     color: var(--accent) !important;
-    padding: 0.6rem 1.2rem;
-    border-radius: 20px 0 0 20px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
+    padding: 0.6rem 1.3rem;
+    border-radius: 25px 0 0 25px;
     border: 1px solid var(--primary);
-    border-right: none; /* remove right border so it visually connects to user-info */
+    border-right: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    transition: background var(--transition);
 }
 
 .deposit-cta::after { display: none; }
 
-.deposit-cta:hover,
-.deposit-cta:focus { background-color: var(--primary-light); }
-
-.user-info {
-    /* keep the visual box but join to deposit button */
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--primary);
-    border-left: none; /* remove left border to join with deposit-cta */
-    border-radius: 0 20px 20px 0;
-    background: rgba(255, 0, 0, 0.05);
+.deposit-cta:hover {
+    background: var(--primary-light);
 }
 
-/* User info section - separate from menu */
 .user-info {
     display: flex;
-    gap: 0.5rem;
     align-items: center;
-    padding: 0.5rem 1rem;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
     border: 1px solid var(--primary);
-    border-radius: 20px;
-    background: rgba(255, 0, 0, 0.05);
+    border-left: none;
+    border-radius: 0 25px 25px 0;
+    background: rgba(255,0,0,0.06);
 }
 
-/* Logged in user greeting */
 .nav .user-greeting {
-    margin-left: 0;
-    margin-right: 0.5rem;
     font-size: 0.9rem;
-    color: var(--accent);
     font-weight: 400;
 }
 
-/* show balance when logged in */
 .nav .user-balance {
-    margin-left: 0;
     font-size: 0.9rem;
+    font-weight: 600;
     color: var(--primary-light);
-    font-weight: 500;
 }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, #200005 0%, #000000 100%);
-    padding: 6rem 0;
-    text-align: center;
-    border-bottom: 2px solid var(--primary);
-    position: relative;
-    overflow: hidden;
-}
+/* ===============================
+   HERO & SECTIONS
+================================= */
 
-/* Featured events grid in hero */
 .hero.featured-events {
     background: var(--surface);
     padding: 4rem 0;
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    .hero.featured-events {
-        padding: 2rem 0;
-    }
-}
-.hero.featured-events h2 {
+.hero.featured-events h2,
+.sports-grid h2,
+.live-odds h2,
+.promotions h2,
+.features h2 {
     font-size: 2.25rem;
     margin-bottom: 2rem;
     color: var(--primary);
     font-family: var(--font-heading);
 }
-.events-grid {
+
+/* CARDS & GRIDS */
+
+.events-grid,
+.grid,
+.promo-grid,
+.features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
-.event-card {
-    background: rgba(20,20,20,0.8);
-    padding: 2rem 1rem;
+
+.event-card,
+.sport-card,
+.promo-card,
+.feature {
+    background: rgba(20,20,20,0.85);
+    padding: 2rem 1.5rem;
     border-radius: 12px;
     transition: transform var(--transition), box-shadow var(--transition);
+    border: 1px solid #222;
 }
-.event-card:hover {
+
+.event-card:hover,
+.sport-card:hover,
+.promo-card:hover,
+.feature:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-}
-.event-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-}
-.event-card p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-}
-.event-card .btn-bet {
-    background-color: var(--primary);
-    color: var(--accent);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background var(--transition), transform var(--transition);
-}
-.event-card .btn-bet:hover {
-    background-color: var(--primary-light);
-    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(255,0,0,0.3);
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
-    .nav {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        font-size: 0.85rem;
-    }
+/* TABLE */
 
-    .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-    }
-    .nav-links a {
-        padding: 0.5rem 0.8rem;
-        white-space: nowrap;
-    }
-
-        /* Deposit button on mobile */
-        .nav-links a[href="deposit.html"] {
-            padding: 0.5rem 1rem;
-            border-radius: 15px;
-        }
-
-    .user-info {
-        padding: 0.4rem 0.8rem;
-        border-radius: 15px;
-        gap: 0.4rem;
-    }
-
-    /* stack CTA group on narrow screens so items feel connected but readable */
-    .cta-group {
-        display: flex;
-        gap: 0.4rem;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .deposit-cta {
-        border-radius: 15px;
-    }
-    .user-info {
-        border-radius: 15px;
-    }
-
-    .nav .user-greeting {
-        margin-left: 0.5rem;
-        font-size: 0.8rem;
-    }
-
-    .nav .user-balance {
-        margin-left: 0.5rem;
-        font-size: 0.8rem;
-    }
-
-    .hero.featured-events h2 {
-        font-size: 1.75rem;
-    }
-
-    .events-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .sports-grid .grid,
-    .promo-grid,
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .odds-table {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .odds-table thead,
-    .odds-table tbody,
-    .odds-table th,
-    .odds-table td,
-    .odds-table tr {
-        display: block;
-    }
-
-    .odds-table tr { margin-bottom: 0.5rem; }
-
-    .odds-table td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-    }
-
-    .odds-table td:before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 45%;
-        padding-left: 0.5rem;
-        font-weight: 600;
-        text-align: left;
-    }
-}
-
-.hero h1 {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: var(--primary);
-    text-shadow: 0 0 8px var(--primary-light);
-}
-
-.hero p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    color: var(--accent);
-}
-
-.btn-primary {
-    background-color: var(--primary);
-    color: var(--accent);
-    border: none;
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background var(--transition), transform var(--transition);
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-light);
-    transform: translateY(-2px);
-}
-
-/* Sports Grid */
-.sports-grid {
-    padding: 3rem 0;
-    background-color: var(--surface);
-    border-bottom: 1px solid var(--primary);
-}
-
-.sports-grid h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.25rem;
-    color: var(--primary);
-    font-family: var(--font-heading);
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.sport-card {
-    background: rgba(20,20,20,0.8);
-    color: var(--accent);
-    padding: 2.5rem 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    transition: transform var(--transition), box-shadow var(--transition);
-    backdrop-filter: blur(4px);
-}
-
-.sport-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 20px var(--primary-light);
-}
-
-.sport-card h3 {
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-    font-family: var(--font-heading);
-}
-
-/* Live Odds Section */
 .live-odds {
     padding: 3rem 0;
-    background-color: var(--bg);
-    border-bottom: 1px solid var(--primary);
-}
-
-.live-odds h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.25rem;
-    color: var(--primary);
-    font-family: var(--font-heading);
+    background: var(--bg);
 }
 
 .odds-table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(20,20,20,0.85);
+    background: rgba(20,20,20,0.9);
+    border: 2px solid var(--primary);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.75);
-    border: 2px solid var(--primary);
 }
 
-.odds-table thead {
-    background-color: var(--surface);
-    color: var(--primary);
-    border-bottom: 2px solid var(--primary);
-}
-
-.odds-table th {
-    padding: 1rem;
-    text-align: center;
-    font-weight: 700;
-    font-family: var(--font-heading);
-}
-
+.odds-table th,
 .odds-table td {
     padding: 1rem;
     text-align: center;
-    border-bottom: 1px solid #333;
-    color: var(--accent);
 }
 
-.odds-table tbody tr:hover {
-    background-color: #1a1a1a;
+.odds-table thead {
+    background: var(--surface);
+    color: var(--primary);
 }
 
-.spread, .ml, .ou {
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-weight: 600;
-}
+/* BUTTONS */
 
-.spread,
-.ml,
-.ou {
-    background-color: rgba(255,0,0,0.1);
-    color: var(--primary-light);
-}
-
-.btn-bet {
-    background-color: var(--primary);
+.btn-bet,
+.btn-primary {
+    background: var(--primary);
     color: var(--accent);
     border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
+    padding: 0.7rem 1.4rem;
+    border-radius: 20px;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 600;
     transition: background var(--transition), transform var(--transition);
 }
 
-.btn-bet:hover {
-    background-color: var(--primary-light);
+.btn-bet:hover,
+.btn-primary:hover {
+    background: var(--primary-light);
     transform: translateY(-2px);
 }
 
-/* Promotions Section */
-.promotions {
-    padding: 3rem 0;
-    background-color: var(--surface);
-    border-bottom: 1px solid var(--primary);
-}
+/* ===============================
+   FOOTER
+================================= */
 
-.promotions h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.25rem;
-    color: var(--primary);
-    font-family: var(--font-heading);
-}
-
-.promo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-}
-
-.promo-card {
-    background: rgba(20,20,20,0.85);
-    color: var(--accent);
-    padding: 2.5rem 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.75);
-    border: 2px solid var(--primary);
-    transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.promo-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.85);
-}
-
-.promo-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    font-family: var(--font-heading);
-}
-
-.promo-amount {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-}
-
-.promo-desc {
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-/* Features Section */
-.features {
-    padding: 3rem 0;
-    background-color: var(--bg);
-    border-bottom: 1px solid var(--primary);
-}
-
-.features h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.25rem;
-    color: var(--primary);
-    font-family: var(--font-heading);
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-}
-
-.feature {
-    background: rgba(20,20,20,0.8);
-    padding: 2.5rem 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.75);
-    border: 2px solid var(--primary);
-    transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.feature:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.85);
-}
-
-.feature h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    color: var(--primary);
-    font-family: var(--font-heading);
-}
-
-/* Deposit Section */
-.deposit {
-    padding: 3rem 0;
-    background-color: var(--surface);
-    border-top: 2px solid var(--primary);
-    border-bottom: 2px solid var(--primary);
-}
-
-.deposit h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    color: #ff0000;
-}
-
-.deposit-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-}
-
-.deposit-form {
-    background: #000;
-    padding: 2rem;
-    border-radius: 8px;
-    border: 2px solid #ff0000;
-}
-
-.deposit-form h3 {
-    color: #ff0000;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #fff;
-    font-weight: 600;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #1a1a1a;
-    color: #fff;
-    border: 1px solid #ff0000;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.form-group input::placeholder {
-    color: #666;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #ff3333;
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
-}
-
-.input-group {
-    display: flex;
-    align-items: center;
-}
-
-.input-group span {
-    color: #ff0000;
-    font-weight: bold;
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
-}
-
-.input-group input {
-    flex: 1;
-}
-
-.btn-deposit {
-    width: 100%;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s;
-}
-
-.btn-deposit:hover {
-    background-color: #cc0000;
-}
-
-.security-note {
-    text-align: center;
-    margin-top: 1rem;
-    color: #888;
-    font-size: 0.9rem;
-}
-
-.deposit-info {
-    background: #000;
-    padding: 2rem;
-    border-radius: 8px;
-    border: 2px solid #ff0000;
-}
-
-.deposit-info h3 {
-    color: #ff0000;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-}
-
-.method-list {
-    display: grid;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.method {
-    background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 4px;
-    border-left: 3px solid #ff0000;
-}
-
-.method h4 {
-    color: #ff0000;
-    margin-bottom: 0.5rem;
-}
-
-.method p {
-    color: #ccc;
-    font-size: 0.9rem;
-}
-
-.bonus-list {
-    list-style: none;
-}
-
-.bonus-list li {
-    color: #fff;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #333;
-}
-
-.bonus-list li:last-child {
-    border-bottom: none;
-}
-
-/* Footer */
 .footer {
-    background-color: var(--surface);
-    color: #ccc;
+    background: var(--surface);
     padding: 3rem 0 1rem;
-    margin-top: 3rem;
     border-top: 2px solid var(--primary);
 }
 
-/* Declined page-specific styles (moved from inline <style> in declined.html) */
-.decline-section {
-    padding: 6rem 0;
-    background: linear-gradient(135deg, #3d0005 0%, #000000 100%);
-    min-height: calc(100vh - 200px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.decline-container {
-    max-width: 600px;
-    background: #0d0d0d;
-    padding: 3rem;
-    border-radius: 12px;
-    border: 2px solid #ff0000;
-    text-align: center;
-    box-shadow: 0 8px 32px rgba(255, 0, 0, 0.2);
-}
-
-.decline-icon {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-}
-
-.decline-container h1 {
-    color: #ff0000;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-family: 'Orbitron', sans-serif;
-}
-
-.decline-container p {
-    color: #ccc;
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-}
-
-.decline-reasons {
-    background: rgba(20, 20, 20, 0.5);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin: 2rem 0;
-    border-left: 3px solid #ff3333;
-    text-align: left;
-}
-
-.decline-reasons h3 {
-    color: #ff3333;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-}
-
-.decline-reasons ul {
-    list-style: none;
-    color: #ccc;
-}
-
-.decline-reasons li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.decline-reasons li:before {
-    content: "•";
-    color: #ff0000;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.btn-retry {
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.btn-retry:hover {
-    background-color: #cc0000;
-    transform: translateY(-2px);
-}
-
-.btn-home {
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid #666;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.btn-home:hover {
-    border-color: #ff0000;
-    color: #ff0000;
-}
-
-.contact-info {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #333;
-    color: #888;
-    font-size: 0.95rem;
-}
-
-.contact-info p {
-    font-size: 0.95rem;
-    margin: 0.5rem 0;
-}
-
-.contact-email {
-    color: #ff0000;
-    font-weight: 600;
-}
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    margin-bottom: 2rem;
 }
 
 .footer-section h4 {
-    color: #ff0000;
+    color: var(--primary);
     margin-bottom: 1rem;
-}
-
-.footer-section ul {
-    list-style: none;
 }
 
 .footer-section a {
     color: #ccc;
     text-decoration: none;
-    transition: color 0.3s;
 }
 
 .footer-section a:hover {
-    color: #ff0000;
+    color: var(--primary);
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 2rem;
+    margin-top: 2rem;
     border-top: 1px solid #333;
+    padding-top: 1rem;
+    font-size: 0.9rem;
 }
 
-/* Responsive Design */
+/* ===============================
+   RESPONSIVE
+================================= */
+
 @media (max-width: 768px) {
     .nav {
-        gap: 1rem;
-        font-size: 0.9rem;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .odds-table th,
-    .odds-table td {
-        padding: 0.5rem;
-        font-size: 0.85rem;
-    }
-
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .deposit-container {
-        grid-template-columns: 1fr;
-    }
-
-    /* mobile decline adjustments */
-    .decline-container {
-        max-width: 90%;
-        padding: 2rem;
-        margin: 0 auto;
-    }
-    .decline-section {
-        padding: 4rem 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .header .container {
         flex-direction: column;
         gap: 1rem;
     }
 
-    .nav {
+    .cta-group {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.5rem;
     }
 
-    .grid, .promo-grid, .features-grid {
+.deposit-cta {
+    border-radius: 25px 0 0 25px;
+    border-right: none;
+}
+
+.user-info {
+    border-radius: 0 25px 25px 0;
+    border-left: none;
+}
+
+    .events-grid,
+    .grid,
+    .promo-grid,
+    .features-grid {
         grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        font-size: 1.5rem;
-    }
-
-    /* stack card details fields on very narrow phones */
-    .card-details-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-    }
-    @media (max-width: 360px) {
-        .card-details-grid {
-            grid-template-columns: 1fr;
-        }
     }
 }
