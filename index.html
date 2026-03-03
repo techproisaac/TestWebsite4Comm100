@@ -3,40 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lighting Wagers - Premium Sports Betting Platform</title>
+    <title>Lighting Bets - Premium Sports Betting Platform</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo"><svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff0000"/>
-      <stop offset="100%" stop-color="#ff3333"/>
-    </linearGradient>
-  </defs>
-  <path d="M13 2L3 14h7v8l10-12h-7z" fill="url(#logo-grad)"/>
-</svg><span class="logo-text">Lighting Wagers</span></a>
-            <nav class="nav">
-                <a href="#sports">Sports</a>
-                <a href="#odds">Lines</a>
-                <a href="#promotions">Promotions</a>
-                <a href="deposit.html">Deposit</a>
-                <a href="#" class="btn-login">Login</a>
-            </nav>
-        </div>
-    </header>
+    <div id="site-header"></div>
 
-    <!-- Hero Banner -->
-    <section class="hero">
+    <!-- Featured Events Grid -->
+    <section class="hero featured-events">
         <div class="container">
-            <h1>Expert Sports Betting Made Simple</h1>
-            <p>Real-time odds, live betting, and exclusive bonuses</p>
-            <button class="btn-primary">Join Now</button>
+            <h2>Featured Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <h3>Lakers vs Celtics</h3>
+                    <p>Spread: -3.0 / +3.0</p>
+                    <button class="btn-bet">Bet Now</button>
+                </div>
+                <div class="event-card">
+                    <h3>Yankees vs Red Sox</h3>
+                    <p>Spread: -1.5 / +1.5</p>
+                    <button class="btn-bet">Bet Now</button>
+                </div>
+                <div class="event-card">
+                    <h3>Real Madrid vs Barcelona</h3>
+                    <p>Spread: -1.0 / +1.0</p>
+                    <button class="btn-bet">Bet Now</button>
+                </div>
+                <div class="event-card">
+                    <h3>Patriots vs Dolphins</h3>
+                    <p>Spread: -4.5 / +4.5</p>
+                    <button class="btn-bet">Bet Now</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -81,32 +82,32 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Patriots vs Dolphins</td>
-                        <td><span class="spread">-4.5</span> / <span class="spread">+4.5</span></td>
-                        <td><span class="ml">-180</span> / <span class="ml">+155</span></td>
-                        <td><span class="ou">O 43.5</span> / <span class="ou">U 43.5</span></td>
-                        <td><button class="btn-bet">Bet</button></td>
+                        <td data-label="Game">Patriots vs Dolphins</td>
+                        <td data-label="Spread"><span class="spread">-4.5</span> / <span class="spread">+4.5</span></td>
+                        <td data-label="Moneyline"><span class="ml">-180</span> / <span class="ml">+155</span></td>
+                        <td data-label="Over/Under"><span class="ou">O 43.5</span> / <span class="ou">U 43.5</span></td>
+                        <td data-label="Action"><button class="btn-bet">Bet</button></td>
                     </tr>
                     <tr>
-                        <td>Lakers vs Celtics</td>
-                        <td><span class="spread">-3.0</span> / <span class="spread">+3.0</span></td>
-                        <td><span class="ml">-140</span> / <span class="ml">+120</span></td>
-                        <td><span class="ou">O 215</span> / <span class="ou">U 215</span></td>
-                        <td><button class="btn-bet">Bet</button></td>
+                        <td data-label="Game">Lakers vs Celtics</td>
+                        <td data-label="Spread"><span class="spread">-3.0</span> / <span class="spread">+3.0</span></td>
+                        <td data-label="Moneyline"><span class="ml">-140</span> / <span class="ml">+120</span></td>
+                        <td data-label="Over/Under"><span class="ou">O 215</span> / <span class="ou">U 215</span></td>
+                        <td data-label="Action"><button class="btn-bet">Bet</button></td>
                     </tr>
                     <tr>
-                        <td>Yankees vs Red Sox</td>
-                        <td><span class="spread">-1.5</span> / <span class="spread">+1.5</span></td>
-                        <td><span class="ml">-110</span> / <span class="ml">-110</span></td>
-                        <td><span class="ou">O 8.5</span> / <span class="ou">U 8.5</span></td>
-                        <td><button class="btn-bet">Bet</button></td>
+                        <td data-label="Game">Yankees vs Red Sox</td>
+                        <td data-label="Spread"><span class="spread">-1.5</span> / <span class="spread">+1.5</span></td>
+                        <td data-label="Moneyline"><span class="ml">-110</span> / <span class="ml">-110</span></td>
+                        <td data-label="Over/Under"><span class="ou">O 8.5</span> / <span class="ou">U 8.5</span></td>
+                        <td data-label="Action"><button class="btn-bet">Bet</button></td>
                     </tr>
                     <tr>
-                        <td>Real Madrid vs Barcelona</td>
-                        <td><span class="spread">-1.0</span> / <span class="spread">+1.0</span></td>
-                        <td><span class="ml">-120</span> / <span class="ml">+100</span></td>
-                        <td><span class="ou">O 2.5</span> / <span class="ou">U 2.5</span></td>
-                        <td><button class="btn-bet">Bet</button></td>
+                        <td data-label="Game">Real Madrid vs Barcelona</td>
+                        <td data-label="Spread"><span class="spread">-1.0</span> / <span class="spread">+1.0</span></td>
+                        <td data-label="Moneyline"><span class="ml">-120</span> / <span class="ml">+100</span></td>
+                        <td data-label="Over/Under"><span class="ou">O 2.5</span> / <span class="ou">U 2.5</span></td>
+                        <td data-label="Action"><button class="btn-bet">Bet</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -140,7 +141,7 @@
     <!-- Features -->
     <section class="features">
         <div class="container">
-            <h2>Why Choose Lighting Wagers</h2>
+            <h2>Why Choose Lighting Bets</h2>
             <div class="features-grid">
                 <div class="feature">
                     <h3>✅ Live Betting</h3>
@@ -167,7 +168,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Lighting Wagers</h4>
+                    <h4>Lighting Bets</h4>
                     <p>Your premium sports betting destination</p>
                 </div>
                 <div class="footer-section">
@@ -193,10 +194,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Lighting Wagers. All rights reserved. Bet responsibly.</p>
+                <p>&copy; 2026 Lighting Bets. All rights reserved. Bet responsibly.</p>
             </div>
         </div>
     </footer>
+    <script src="scripts.js"></script>
     <script>
   window.addEventListener('message', function(e) {
     // Log ALL messages to find what Comm100 sends

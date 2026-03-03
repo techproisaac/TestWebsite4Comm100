@@ -3,34 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deposit - Lighting Wagers</title>
+    <title>Deposit - Lighting Bets</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo"><svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff0000"/>
-      <stop offset="100%" stop-color="#ff3333"/>
-    </linearGradient>
-  </defs>
-  <path d="M13 2L3 14h7v8l10-12h-7z" fill="url(#logo-grad)"/>
-</svg><span class="logo-text">Lighting Wagers</span></a>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="index.html#sports">Sports</a>
-                <a href="index.html#odds">Lines</a>
-                <a href="index.html#promotions">Promotions</a>
-                <a href="deposit.html">Deposit</a>
-                <a href="#" class="btn-login">Login</a>
-            </nav>
-        </div>
-    </header>
+    <div id="site-header"></div>
 
     <!-- Deposit Section -->
     <section class="deposit" id="deposit">
@@ -134,7 +114,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Lighting Wagers</h4>
+                    <h4>Lighting Bets</h4>
                     <p>Your premium sports betting destination</p>
                 </div>
                 <div class="footer-section">
@@ -160,10 +140,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Lighting Wagers. All rights reserved. Bet responsibly.</p>
+                <p>&copy; 2026 Lighting Bets. All rights reserved. Bet responsibly.</p>
             </div>
         </div>
     </footer>
+    <script src="scripts.js"></script>
     <script>
         // Store form data in sessionStorage
         function saveFormData() {
@@ -338,6 +319,12 @@
                 // Log for demo purposes (in production, send to server)
                 console.log('Deposit Details:', details);
                 alert('Crypto deposit request submitted! Check console for details.\n\nAmount: $' + amount + '\nMethod: ' + method + (promo ? '\nPromo: ' + promo : ''));
+
+                // bump the mock balance so user sees it update
+                const current = parseFloat(sessionStorage.getItem('balance') || '0');
+                sessionStorage.setItem('balance', (current + parseFloat(amount)).toFixed(2));
+                // refresh header so balance updates immediately
+                if (window.updateHeader) updateHeader();
             }
         });
 

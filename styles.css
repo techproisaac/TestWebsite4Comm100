@@ -86,6 +86,14 @@ body {
     font-size: 0.95rem;
 }
 
+
+/* container for nav links (desktop fallback) */
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
 .nav a {
     color: var(--accent);
     text-decoration: none;
@@ -126,12 +134,182 @@ body {
     background-color: var(--primary-light);
 }
 
+/* Logged in user greeting */
+.nav .user-greeting {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 400;
+}
+
+/* show balance when logged in */
+.nav .user-balance {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    color: var(--primary-light);
+    font-weight: 500;
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, #200005 0%, #000000 100%);
     padding: 6rem 0;
     text-align: center;
     border-bottom: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Featured events grid in hero */
+.hero.featured-events {
+    background: var(--surface);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .hero.featured-events {
+        padding: 2rem 0;
+    }
+}
+.hero.featured-events h2 {
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+    font-family: var(--font-heading);
+}
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+.event-card {
+    background: rgba(20,20,20,0.8);
+    padding: 2rem 1rem;
+    border-radius: 12px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+.event-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+.event-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+.event-card .btn-bet {
+    background-color: var(--primary);
+    color: var(--accent);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background var(--transition), transform var(--transition);
+}
+.event-card .btn-bet:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .nav {
+        flex-wrap: nowrap;
+        gap: 0.75rem;
+        font-size: 0.85rem;
+        position: relative;
+        flex: 1 1 auto;
+        order: 1;
+        min-width: 0;
+    }
+
+    .header-icons {
+        order: 2;
+    }
+
+
+    .notif-icon {
+        font-size: 1rem;
+        cursor: pointer;
+        background: var(--primary);
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.8rem;
+        height: 1.8rem;
+        border-radius: 50%;
+        transition: background var(--transition), transform var(--transition);
+        margin-left: 1rem;
+    }
+    .notif-icon:hover {
+        background: var(--primary-light);
+        transform: scale(1.1);
+    }
+
+
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 0;
+        overflow-x: auto;
+    }
+    .nav-links a {
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+    }
+
+    .hero.featured-events h2 {
+        font-size: 1.75rem;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sports-grid .grid,
+    .promo-grid,
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .odds-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .odds-table thead,
+    .odds-table tbody,
+    .odds-table th,
+    .odds-table td,
+    .odds-table tr {
+        display: block;
+    }
+
+    .odds-table tr { margin-bottom: 0.5rem; }
+
+    .odds-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .odds-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 0.5rem;
+        font-weight: 600;
+        text-align: left;
+    }
 }
 
 .hero h1 {
