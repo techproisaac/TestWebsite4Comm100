@@ -16,6 +16,24 @@
         // render common header into placeholder div
         renderHeader();
 
+        // wire up mobile menu toggle once header is in DOM
+        const toggleMenu = () => {
+            const toggle = document.querySelector('.menu-toggle');
+            const links = document.querySelector('.nav-links');
+            if (toggle && links) {
+                toggle.addEventListener('click', () => {
+                    links.classList.toggle('active');
+                });
+                // close menu when a link is tapped (helps mobile UX)
+                links.querySelectorAll('a').forEach(a => {
+                    a.addEventListener('click', () => {
+                        links.classList.remove('active');
+                    });
+                });
+            }
+        };
+        toggleMenu();
+
         // then update it according to login state
         updateHeader();
 
@@ -41,6 +59,7 @@
         placeholder.innerHTML = `
 <header class="header">
     <div class="container">
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
         <a href="index.html" class="logo"><svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
   <defs>
     <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">

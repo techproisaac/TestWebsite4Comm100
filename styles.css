@@ -40,6 +40,16 @@ body {
     border-bottom: 2px solid var(--primary);
 }
 
+/* mobile menu toggle button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--accent);
+    cursor: pointer;
+}
+
 .header .container {
     display: flex;
     justify-content: space-between;
@@ -263,6 +273,21 @@ body {
     .nav-links a {
         padding: 0.5rem 1rem;
         white-space: nowrap;
+    }
+
+    /* allow toggling menu on mobile */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    
+    /* adjust decline section padding for phones */
+    .decline-section {
+        padding: 4rem 1rem;
     }
 
     .hero.featured-events h2 {
@@ -766,6 +791,10 @@ body {
         font-size: 0.9rem;
     }
 
+    .menu-toggle {
+        display: block;
+    }
+
     .hero h1 {
         font-size: 1.8rem;
     }
@@ -787,6 +816,23 @@ body {
     .deposit-container {
         grid-template-columns: 1fr;
     }
+
+    /* mobile decline adjustments */
+    .decline-container {
+        max-width: 90%;
+        padding: 2rem;
+        margin: 0 auto;
+    }
+    .decline-section {
+        padding: 4rem 1rem;
+    }
+
+    /* make decline container narrower on phones */
+    .decline-container {
+        max-width: 90%;
+        padding: 2rem;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 480px) {
@@ -807,5 +853,17 @@ body {
 
     .hero h1 {
         font-size: 1.5rem;
+    }
+
+    /* stack card details fields on very narrow phones */
+    .card-details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    @media (max-width: 360px) {
+        .card-details-grid {
+            grid-template-columns: 1fr;
+        }
     }
 }
