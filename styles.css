@@ -40,20 +40,12 @@ body {
     border-bottom: 2px solid var(--primary);
 }
 
-/* mobile menu toggle button */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--accent);
-    cursor: pointer;
-}
-
 .header .container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 1rem;
+    text-align: center;
 }
 
 .logo {
@@ -102,6 +94,8 @@ body {
     display: flex;
     gap: 1.5rem;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .nav a {
@@ -132,21 +126,57 @@ body {
     width: 100%;
 }
 
-.btn-login {
-    background-color: var(--primary);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    color: var(--accent) !important;
-    transition: background var(--transition);
+/* Deposit link - make it stand out as a CTA */
+.cta-group {
+    display: flex;
+    align-items: center;
+    gap: 0; /* remove gap so elements touch and appear joined */
 }
 
-.btn-login:hover {
-    background-color: var(--primary-light);
+.deposit-cta {
+    background-color: var(--primary);
+    color: var(--accent) !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px 0 0 20px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid var(--primary);
+    border-right: none; /* remove right border so it visually connects to user-info */
+}
+
+.deposit-cta::after { display: none; }
+
+.deposit-cta:hover,
+.deposit-cta:focus { background-color: var(--primary-light); }
+
+.user-info {
+    /* keep the visual box but join to deposit button */
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary);
+    border-left: none; /* remove left border to join with deposit-cta */
+    border-radius: 0 20px 20px 0;
+    background: rgba(255, 0, 0, 0.05);
+}
+
+/* User info section - separate from menu */
+.user-info {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    background: rgba(255, 0, 0, 0.05);
 }
 
 /* Logged in user greeting */
 .nav .user-greeting {
-    margin-left: 1rem;
+    margin-left: 0;
+    margin-right: 0.5rem;
     font-size: 0.9rem;
     color: var(--accent);
     font-weight: 400;
@@ -154,7 +184,7 @@ body {
 
 /* show balance when logged in */
 .nav .user-balance {
-    margin-left: 1rem;
+    margin-left: 0;
     font-size: 0.9rem;
     color: var(--primary-light);
     font-weight: 500;
@@ -229,65 +259,59 @@ body {
 /* Responsive tweaks */
 @media (max-width: 768px) {
     .nav {
-        flex-wrap: nowrap;
-        gap: 0.75rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         font-size: 0.85rem;
-        position: relative;
-        flex: 1 1 auto;
-        order: 1;
-        min-width: 0;
     }
-
-    .header-icons {
-        order: 2;
-    }
-
-
-    .notif-icon {
-        font-size: 1rem;
-        cursor: pointer;
-        background: var(--primary);
-        color: var(--accent);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 1.8rem;
-        height: 1.8rem;
-        border-radius: 50%;
-        transition: background var(--transition), transform var(--transition);
-        margin-left: 1rem;
-    }
-    .notif-icon:hover {
-        background: var(--primary-light);
-        transform: scale(1.1);
-    }
-
 
     .nav-links {
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         width: 100%;
-        margin-top: 0;
-        overflow-x: auto;
+        align-items: center;
+        justify-content: center;
     }
     .nav-links a {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.8rem;
         white-space: nowrap;
     }
 
-    /* allow toggling menu on mobile */
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
+        /* Deposit button on mobile */
+        .nav-links a[href="deposit.html"] {
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+        }
+
+    .user-info {
+        padding: 0.4rem 0.8rem;
+        border-radius: 15px;
+        gap: 0.4rem;
     }
-    .nav-links.active {
+
+    /* stack CTA group on narrow screens so items feel connected but readable */
+    .cta-group {
         display: flex;
+        gap: 0.4rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    
-    /* adjust decline section padding for phones */
-    .decline-section {
-        padding: 4rem 1rem;
+    .deposit-cta {
+        border-radius: 15px;
+    }
+    .user-info {
+        border-radius: 15px;
+    }
+
+    .nav .user-greeting {
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .nav .user-balance {
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
     }
 
     .hero.featured-events h2 {
@@ -752,6 +776,139 @@ body {
     margin-top: 3rem;
     border-top: 2px solid var(--primary);
 }
+
+/* Declined page-specific styles (moved from inline <style> in declined.html) */
+.decline-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #3d0005 0%, #000000 100%);
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.decline-container {
+    max-width: 600px;
+    background: #0d0d0d;
+    padding: 3rem;
+    border-radius: 12px;
+    border: 2px solid #ff0000;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(255, 0, 0, 0.2);
+}
+
+.decline-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.decline-container h1 {
+    color: #ff0000;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.decline-container p {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.decline-reasons {
+    background: rgba(20, 20, 20, 0.5);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    border-left: 3px solid #ff3333;
+    text-align: left;
+}
+
+.decline-reasons h3 {
+    color: #ff3333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.decline-reasons ul {
+    list-style: none;
+    color: #ccc;
+}
+
+.decline-reasons li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.decline-reasons li:before {
+    content: "•";
+    color: #ff0000;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-retry {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-retry:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+}
+
+.btn-home {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #666;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-home:hover {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.contact-info {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.95rem;
+}
+
+.contact-info p {
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
+}
+
+.contact-email {
+    color: #ff0000;
+    font-weight: 600;
+}
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -791,10 +948,6 @@ body {
         font-size: 0.9rem;
     }
 
-    .menu-toggle {
-        display: block;
-    }
-
     .hero h1 {
         font-size: 1.8rem;
     }
@@ -825,13 +978,6 @@ body {
     }
     .decline-section {
         padding: 4rem 1rem;
-    }
-
-    /* make decline container narrower on phones */
-    .decline-container {
-        max-width: 90%;
-        padding: 2rem;
-        margin: 0 auto;
     }
 }
 

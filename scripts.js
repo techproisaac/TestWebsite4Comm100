@@ -16,24 +16,6 @@
         // render common header into placeholder div
         renderHeader();
 
-        // wire up mobile menu toggle once header is in DOM
-        const toggleMenu = () => {
-            const toggle = document.querySelector('.menu-toggle');
-            const links = document.querySelector('.nav-links');
-            if (toggle && links) {
-                toggle.addEventListener('click', () => {
-                    links.classList.toggle('active');
-                });
-                // close menu when a link is tapped (helps mobile UX)
-                links.querySelectorAll('a').forEach(a => {
-                    a.addEventListener('click', () => {
-                        links.classList.remove('active');
-                    });
-                });
-            }
-        };
-        toggleMenu();
-
         // then update it according to login state
         updateHeader();
 
@@ -59,7 +41,6 @@
         placeholder.innerHTML = `
 <header class="header">
     <div class="container">
-        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
         <a href="index.html" class="logo"><svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
   <defs>
     <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -75,13 +56,15 @@
                 <a href="index.html#sports">Sports</a>
                 <a href="index.html#odds">Lines</a>
                 <a href="index.html#promotions">Promotions</a>
-                <a href="deposit.html">Deposit</a>
-                <a href="#" class="btn-login">Login</a>
-                <span class="user-greeting"></span>
-                <span class="user-balance"></span>
+            </div>
+            <div class="cta-group">
+                <a href="deposit.html" class="deposit-cta">Deposit</a>
+                <div class="user-info">
+                    <span class="user-greeting"></span>
+                    <span class="user-balance"></span>
+                </div>
             </div>
         </nav>
-        <span class="notif-icon" title="Notifications">🔔</span>
     </div>
 </header>
         `;
@@ -92,9 +75,7 @@
         const nav = document.querySelector('nav.nav');
         if (!nav) return;
 
-        let loginEl = nav.querySelector('.btn-login');
         let greetingEl = nav.querySelector('.user-greeting');
-        let accountEl = nav.querySelector('.account-link');
         let balanceEl = nav.querySelector('.user-balance');
 
         if (userName) {
@@ -102,33 +83,13 @@
             sessionStorage.setItem('userName', userName);
 
             // display greeting
-            if (!greetingEl) {
-                greetingEl = document.createElement('span');
-                greetingEl.className = 'user-greeting';
-                nav.appendChild(greetingEl);
+            if (greetingEl) {
+                greetingEl.textContent = userName;
             }
-            greetingEl.textContent = 'Hello, ' + userName;
 
             // display balance element
-            if (!balanceEl) {
-                balanceEl = document.createElement('span');
-                balanceEl.className = 'user-balance';
-                nav.appendChild(balanceEl);
-            }
-            balanceEl.textContent = 'Balance: $' + formatMoney(sessionStorage.getItem('balance'));
-
-            // add an "Account" link if it doesn't exist
-            if (!accountEl && loginEl) {
-                accountEl = document.createElement('a');
-                accountEl.href = '#';
-                accountEl.className = 'account-link';
-                accountEl.textContent = 'Account';
-                nav.insertBefore(accountEl, loginEl);
-            }
-
-            // hide login/logout link when logged in
-            if (loginEl) {
-                loginEl.style.display = 'none';
+            if (balanceEl) {
+                balanceEl.textContent = '$' + formatMoney(sessionStorage.getItem('balance'));
             }
         } else {
             // always set a default user for demo
