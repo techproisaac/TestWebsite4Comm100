@@ -206,37 +206,35 @@
   var Comm100API = Comm100API || {};
   Comm100API.chatGroup = 99;
 
-  // 1. Logic to determine the greeting
+  // 1. Correct way to queue the event listener
   Comm100API.on = Comm100API.on || [];
-  Comm100API.on('livechat.chat.start', function(data) {
-    var greetingMap = {
-      "Deposit": "and I will be assisting you with your deposit today.",
-      "Sportsbook": "and I will be assisting you with your sportsbook inquiry today.",
-      "Casino": "and I will be assisting you with your casino inquiry today.",
-      "My Account": "and I will be assisting you with your account inquiry today.",
-      "Promotions / Bonuses": "and I will be assisting you with your promotions and bonuses today.",
-      "Withdrawal": "and I will be assisting you with your withdrawal today.",
-      "Other": "and I will be assisting you today."
-    };
+  Comm100API.on.push(['livechat.chat.start', function(data) {
+    try {
+      var greetingMap = {
+        "Deposit": "and I will be assisting you with your deposit today.",
+        "Sportsbook": "and I will be assisting you with your sportsbook inquiry today.",
+        "Casino": "and I will be assisting you with your casino inquiry today.",
+        "My Account": "and I will be assisting you with your account inquiry today.",
+        "Promotions / Bonuses": "and I will be assisting you with your promotions and bonuses today.",
+        "Withdrawal": "and I will be assisting you with your withdrawal today.",
+        "Other": "and I will be assisting you today."
+      };
 
-    var customGreeting = "";
-    var selectedDept = data.prechatData && data.prechatData['departmentsSBK'];
+      var selectedDept = data.prechatData && data.prechatData['departmentsSBK'];
+      
+      // If selectedDept exists, find map; otherwise, check if it's the "Declined" campaign (no prechat)
+      var customGreeting = greetingMap[selectedDept] || "and I will be assisting you with your deposit.";
 
-    if (selectedDept) {
-      // Logic for Regular Campaign (Pre-chat selection exists)
-      customGreeting = greetingMap[selectedDept] || "and I will be assisting you today.";
-    } else {
-      // Logic for Declined Deposit Campaign (No pre-chat form)
-      customGreeting = "and I will be assisting you with your deposit.";
+      Comm100API.setCustomVariable([{
+        name: 'GreetingMessage',
+        value: customGreeting
+      }]);
+    } catch (err) {
+      console.error("Comm100 Greeting Error: ", err);
     }
+  }]);
 
-    // 2. Push the value to Comm100
-    Comm100API.setCustomVariable([{
-      name: 'GreetingMessage',
-      value: customGreeting
-    }]);
-  });
-
+  // 2. Main Comm100 Initialization (Do not change site_id)
   (function(t) {
     function e(e) {
       var a = document.createElement("script"),
