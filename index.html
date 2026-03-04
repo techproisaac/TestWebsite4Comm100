@@ -203,44 +203,42 @@
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-dynamic"></div>
 <script type="text/javascript">
-  // Initialize the global variable with a default so it's never "blank"
-  window.GreetingMessage = "and I will be assisting you today."; 
+  // 1. Initial global variable
+  window.DeptGreeting = "and I will be assisting you today."; 
 
   var Comm100API = Comm100API || {};
   Comm100API.chatGroup = 99;
-
   Comm100API.on = Comm100API.on || [];
-  Comm100API.on.push(['livechat.chat.start', function(data) {
+
+  // 2. LISTEN FOR DATA CHANGE (Fires the moment they click the dropdown)
+  Comm100API.on.push(['livechat.prechat.data.change', function(data) {
     try {
-      var greetingMap = {
-        "Deposit": "and I will be assisting you with your deposit today.",
-        "Sportsbook": "and I will be assisting you with your sportsbook inquiry today.",
-        "Casino": "and I will be assisting you with your casino inquiry today.",
-        "My Account": "and I will be assisting you with your account inquiry today.",
-        "Promotions / Bonuses": "and I will be assisting you with your promotions and bonuses today.",
-        "Withdrawal": "and I will be assisting you with your withdrawal today.",
-        "Other": "and I will be assisting you today."
-      };
+      // Check if the field being changed is your dropdown
+      if (data && data.fieldName === 'departmentsSBK') {
+        
+        var greetingMap = {
+          "deposit": "and I will be assisting you with your deposit today.",
+          "sportsbook": "and I will be assisting you with your sportsbook inquiry today.",
+          "casino": "and I will be assisting you with your casino inquiry today.",
+          "my account": "and I will be assisting you with your account inquiry today.",
+          "promotions / bonuses": "and I will be assisting you with your promotions and bonuses today.",
+          "withdrawal": "and I will be assisting you with your withdrawal today."
+        };
 
-      // 1. Capture the selection
-      var selectedDept = data.prechatData && data.prechatData['departmentsSBK'];
-      console.log("Comm100: User selected department:", selectedDept);
-
-      // 2. Determine message
-      var finalMessage = greetingMap[selectedDept] || "and I will be assisting you today.";
-      
-      // 3. Update both the Global Window variable AND the Comm100 API
-      window.GreetingMessage = finalMessage; 
-      Comm100API.setCustomVariable([{
-        name: 'GreetingMessage',
-        value: finalMessage
-      }]);
-      
-      console.log("Comm100: Variable updated to:", finalMessage);
-
-    } catch (err) {
-      console.error("Comm100 Logic Error:", err);
-    }
+        var rawValue = data.fieldValue || "";
+        var cleanValue = rawValue.toLowerCase().trim();
+        
+        if (greetingMap[cleanValue]) {
+          // UPDATE IMMEDIATELY so it's ready BEFORE they click 'Start Chat'
+          window.DeptGreeting = greetingMap[cleanValue];
+          
+          Comm100API.setCustomVariable([{
+            name: 'DeptGreeting',
+            value: greetingMap[cleanValue]
+          }]);
+        }
+      }
+    } catch (err) {}
   }]);
 
   (function(t) {
@@ -249,11 +247,9 @@
         c = document.getElementsByTagName("script")[0];
       a.type = "text/javascript", a.async = !0, a.src = e + t.site_id, c.parentNode.insertBefore(a, c)
     }
-    t.chat_buttons = t.chat_buttons || [], t.chat_buttons.push({
-      div_id: "comm100-button-dynamic"
-    }), t.site_id = 75000178, t.dynamic = true, e("https://vue.comm100.com/livechat.ashx?siteId="), setTimeout(function() {
-      t.loaded || e("https://standby.comm100vue.com/livechat.ashx?siteId=")
-    }, 5e3)
+    t.chat_buttons = t.chat_buttons || [], t.chat_buttons.push({ div_id: "comm100-button-dynamic" }), 
+    t.site_id = 75000178, t.dynamic = true, e("https://vue.comm100.com/livechat.ashx?siteId="), 
+    setTimeout(function() { t.loaded || e("https://standby.comm100vue.com/livechat.ashx?siteId=") }, 5e3)
   })(Comm100API || {});
 </script>
 <!--End Comm100 Live Chat Code-->
