@@ -202,11 +202,49 @@
 
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-dynamic"></div>
-<script type="text/javascript" >
-  var GreetingMessage;
-  var Comm100API=Comm100API||{};
+<script type="text/javascript">
+  var Comm100API = Comm100API || {};
   Comm100API.chatGroup = 99;
-  (function(t){function e(e){var a=document.createElement("script"),c=document.getElementsByTagName("script")[0];a.type="text/javascript",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({div_id:"comm100-button-dynamic"}),t.site_id=75000178,t.dynamic=true,e("https://vue.comm100.com/livechat.ashx?siteId="),setTimeout(function(){t.loaded||e("https://standby.comm100vue.com/livechat.ashx?siteId=")},5e3)})(Comm100API||{})
+
+  // 1. Define the mapping of Pre-chat selections to Greeting Phrases
+  var greetingMap = {
+    "Deposit": "and I will be assisting you with your deposit today.",
+    "Sportsbook": "and I will be assisting you with your sportsbook inquiry today.",
+    "Casino": "and I will be assisting you with your casino inquiry today.",
+    "My Account": "and I will be assisting you with your account inquiry today.",
+    "Promotions / Bonuses": "and I will be assisting you with your promotions and bonuses today.",
+    "Withdrawal": "and I will be assisting you with your withdrawal today.",
+    "Other": "and I will be assisting you today."
+  };
+
+  // 2. Listen for the chat to start
+  Comm100API.on = Comm100API.on || [];
+  Comm100API.on('livechat.chat.start', function(data) {
+    // Get the value from the pre-chat field 'departmentsSBK'
+    var selectedDept = data.prechatData && data.prechatData['departmentsSBK'];
+    
+    // Determine the greeting based on the map, fallback to a default if not found
+    var customGreeting = greetingMap[selectedDept] || "and I will be assisting you today.";
+
+    // 3. Update the Comm100 Custom Variable dynamically
+    Comm100API.setCustomVariable({
+      name: 'GreetingMessage',
+      value: customGreeting
+    });
+  });
+
+  (function(t) {
+    function e(e) {
+      var a = document.createElement("script"),
+        c = document.getElementsByTagName("script")[0];
+      a.type = "text/javascript", a.async = !0, a.src = e + t.site_id, c.parentNode.insertBefore(a, c)
+    }
+    t.chat_buttons = t.chat_buttons || [], t.chat_buttons.push({
+      div_id: "comm100-button-dynamic"
+    }), t.site_id = 75000178, t.dynamic = true, e("https://vue.comm100.com/livechat.ashx?siteId="), setTimeout(function() {
+      t.loaded || e("https://standby.comm100vue.com/livechat.ashx?siteId=")
+    }, 5e3)
+  })(Comm100API || {});
 </script>
 <!--End Comm100 Live Chat Code-->
 </body>
