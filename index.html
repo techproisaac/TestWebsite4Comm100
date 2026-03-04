@@ -203,10 +203,12 @@
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-dynamic"></div>
 <script type="text/javascript">
+  // Initialize the global variable with a default so it's never "blank"
+  window.GreetingMessage = "and I will be assisting you today."; 
+
   var Comm100API = Comm100API || {};
   Comm100API.chatGroup = 99;
 
-  // 1. Correct way to queue the event listener
   Comm100API.on = Comm100API.on || [];
   Comm100API.on.push(['livechat.chat.start', function(data) {
     try {
@@ -220,21 +222,27 @@
         "Other": "and I will be assisting you today."
       };
 
+      // 1. Capture the selection
       var selectedDept = data.prechatData && data.prechatData['departmentsSBK'];
-      
-      // If selectedDept exists, find map; otherwise, check if it's the "Declined" campaign (no prechat)
-      var customGreeting = greetingMap[selectedDept] || "and I will be assisting you with your deposit.";
+      console.log("Comm100: User selected department:", selectedDept);
 
+      // 2. Determine message
+      var finalMessage = greetingMap[selectedDept] || "and I will be assisting you today.";
+      
+      // 3. Update both the Global Window variable AND the Comm100 API
+      window.GreetingMessage = finalMessage; 
       Comm100API.setCustomVariable([{
         name: 'GreetingMessage',
-        value: customGreeting
+        value: finalMessage
       }]);
+      
+      console.log("Comm100: Variable updated to:", finalMessage);
+
     } catch (err) {
-      console.error("Comm100 Greeting Error: ", err);
+      console.error("Comm100 Logic Error:", err);
     }
   }]);
 
-  // 2. Main Comm100 Initialization (Do not change site_id)
   (function(t) {
     function e(e) {
       var a = document.createElement("script"),
