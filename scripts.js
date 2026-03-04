@@ -5,7 +5,7 @@
     function init() {
         // on every load we ensure the user is "logged in" for demo
         if (!sessionStorage.getItem('userName')) {
-            sessionStorage.setItem('userName', 'testName');
+            sessionStorage.setItem('userName', 'Test Name');
         }
 
         // set a default balance if none exists
